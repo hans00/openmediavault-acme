@@ -1,17 +1,13 @@
 {
 	"type": "config",
-	"title": "letsencrypt",
-	"id": "conf.service.letsencrypt",
+	"title": "acme",
+	"id": "conf.service.acme",
 	"queryinfo": {
-		"xpath": "/config/services/letsencrypt",
+		"xpath": "/config/services/acme",
 		"iterable": false
 	},
 	"properties": {
 		"enable": {
-			"type": "boolean"
-		},
-		"test_cert": {
-			"description": "Do not enable until first certificate has been successfully generated. Once you have a certificate use this to avoid rate limit errors",
 			"type": "boolean"
 		},
 		"email": {
@@ -19,8 +15,9 @@
 			"type": "string",
 			"format": "email"
 		},
-		"name": {
-			"type": "string"
+		"test_cert": {
+			"description": "Do not enable until first certificate has been successfully generated. Once you have a certificate use this to avoid rate limit errors",
+			"type": "boolean"
 		},
 		"certuuid": {
 			"type": "string"
@@ -31,6 +28,30 @@
 		},
 		"extraoptions": {
 			"type": "string"
+		},
+		"envs": {
+			"description": "DNS API validation enviroments setting, see: https://github.com/Neilpang/acme.sh/tree/master/dnsapi",
+			"type": "object",
+			"properties": {
+				"env": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"uuid": {
+								"type": "string",
+								"format": "uuidv4"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
 		},
 		"domains": {
 			"type": "object",
@@ -48,10 +69,20 @@
 								"description": "Domains the certificate will be generated for and must point to this server, e.g yourdomain.tld, sub.afraid.org. Wildcard (*) domains are not supported. Separate multiple (sub)domains with a comma (,)",
 								"type": "string"
 							},
+							"validation": {
+								"description": "The validation type of your internet facing",
+								"type": "string"
+							},
 							"webroot": {
 								"description": "The root directory of the files served by your internet facing webserver",
 								"type": "string",
-								"format": "dirpath"
+								"oneOf": [{
+									"type": "string",
+									"format": "dirpath"
+								}, {
+									"type": "string",
+									"maxLength": 0
+								}]
 							}
 						}
 					}

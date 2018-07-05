@@ -5,15 +5,14 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-OMV_LETSENCRYPT_APP_PATH="/etc/letsencrypt/"
-LETSENCRYPT_CRON="/etc/cron.d/openmediavault-letsencrypt"
+LETSENCRYPT_CRON="/etc/cron.d/openmediavault-acme"
 
 case "$1" in
     purge)
-        omv_config_delete "/config/services/letsencrypt"
+        omv_config_delete "/config/services/acme"
 
-        if [ -d "${OMV_LETSENCRYPT_APP_PATH}" ]; then
-            rm -rf "${OMV_LETSENCRYPT_APP_PATH}"
+        if [ -d "/root/.acme.sh" ]; then
+            rm -rf "/root/.acme.sh"
         fi
 
         if [ -f "${LETSENCRYPT_CRON}" ]; then

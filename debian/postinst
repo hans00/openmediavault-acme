@@ -14,10 +14,13 @@ case "$1" in
 
         # Initialize and migrate configuration database.
         echo "Updating configuration database ..."
-        omv-confdbadm create "conf.service.letsencrypt"
+        omv-confdbadm create "conf.service.acme"
         if [ -n "$2" ]; then
-            omv-confdbadm migrate "conf.service.letsencrypt" "${2}"
+            omv-confdbadm migrate "conf.service.acme" "${2}"
         fi
+        echo "Install acme.sh"
+        curl "https://get.acme.sh" | sh
+        crontab -l | awk '!/acme\.sh/' | crontab -
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

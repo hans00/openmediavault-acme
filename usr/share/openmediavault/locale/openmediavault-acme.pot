@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the openmediavault-letsencrypt package.
+# This file is distributed under the same license as the openmediavault-acme package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: openmediavault-letsencrypt\n"
+"Project-Id-Version: openmediavault-acme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 10:06-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -65,16 +65,19 @@ msgstr ""
 msgid "Extra Options"
 msgstr ""
 
+msgid "DNS API Enviroment"
+msgstr ""
+
 msgid "Generate"
 msgstr ""
 
 msgid "Let's Encrypt"
 msgstr ""
 
-msgid "LetsEncrypt"
+msgid "ACME"
 msgstr ""
 
-msgid "LetsEncrypt settings"
+msgid "ACME settings"
 msgstr ""
 
 msgid "Level"
@@ -95,6 +98,12 @@ msgstr ""
 msgid "Required for registration with LetsEncrypt.org.  This email address can be used to recover lost certificates."
 msgstr ""
 
+msgid ""
+"DNS API validation enviroment, see: "
+"<a target=\"_blank\" href=\"https://github.com/Neilpang/acme.sh/tree/master/dnsapi\">https://github.com/Neilpang/acme.sh/tree/master/dnsapi</a>"
+"<br>e.g.<br><code>CF_Key => sdfsdfsdfljlbjkljlkjsdfoiwje</code>"
+msgstr ""
+
 msgid "Schedule Refresh"
 msgstr ""
 
@@ -107,8 +116,20 @@ msgstr ""
 msgid "The root directory of the files served by your internet facing webserver."
 msgstr ""
 
+msgid "The validation type of your internet facing."
+msgstr ""
+
 msgid "Tips"
 msgstr ""
 
 msgid "Web root"
+msgstr ""
+
+msgid "Validation Type"
+msgstr ""
+
+msgid "DNS CloudFlare"
+msgstr ""
+
+msgid "DNS Hurricane Electric"
 msgstr ""

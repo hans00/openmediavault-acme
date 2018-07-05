@@ -1,92 +1,92 @@
-openmediavault-letsencrypt (3.4.5) stable; urgency=low
+openmediavault-acme (3.4.5) stable; urgency=low
 
   * Add date to cert description field
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
 
-openmediavault-letsencrypt (3.4.4) stable; urgency=low
+openmediavault-acme (3.4.4) stable; urgency=low
 
   * Fix cron job permissions
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 17 Nov 2017 20:58:42 -0600
 
-openmediavault-letsencrypt (3.4.3) stable; urgency=low
+openmediavault-acme (3.4.3) stable; urgency=low
 
   * Fix typo
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 29 Oct 2017 13:45:47 -0500
 
-openmediavault-letsencrypt (3.4.2) stable; urgency=low
+openmediavault-acme (3.4.2) stable; urgency=low
 
   * Add extra options field
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 29 Oct 2017 12:52:56 -0500
 
-openmediavault-letsencrypt (3.4.1) stable; urgency=low
+openmediavault-acme (3.4.1) stable; urgency=low
 
   * Show certbot command in output and execute certbot in non-
     interactive mode
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 29 Oct 2017 11:03:54 -0500
 
-openmediavault-letsencrypt (3.4) stable; urgency=low
+openmediavault-acme (3.4) stable; urgency=low
 
   * Allow multiple webroots
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 28 Oct 2017 09:46:21 -0500
 
-openmediavault-letsencrypt (3.3) stable; urgency=low
+openmediavault-acme (3.3) stable; urgency=low
 
   * Add key length setting
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 25 Sep 2017 10:49:20 -0500
 
-openmediavault-letsencrypt (3.2) stable; urgency=low
+openmediavault-acme (3.2) stable; urgency=low
 
   * Fix datetime handling in system logs
   * Fix certbot configuration directory
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 08 Jan 2017 11:24:00 +0900
 
-openmediavault-letsencrypt (3.1) stable; urgency=low
+openmediavault-acme (3.1) stable; urgency=low
 
   * Fix requires
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 01 Aug 2016 07:00:15 -0500
 
-openmediavault-letsencrypt (3.0) stable; urgency=low
+openmediavault-acme (3.0) stable; urgency=low
 
   * Port to OMV 3.x
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Jul 2016 07:29:32 -0500
 
-openmediavault-letsencrypt (2.4) stable; urgency=low
+openmediavault-acme (2.4) stable; urgency=low
 
   * Integrated log with OMV
-  * Fixed bug in system script omv-letsencrypt
+  * Fixed bug in system script omv-acme
   * Fixed duplicate crons being created
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 23 Jan 2016 15:28:13 +0100
 
-openmediavault-letsencrypt (2.3) stable; urgency=low
+openmediavault-acme (2.3) stable; urgency=low
 
   * Added Test flag
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 23 Jan 2016 15:28:13 +0100
 
-openmediavault-letsencrypt (2.2) testing; urgency=low
+openmediavault-acme (2.2) testing; urgency=low
 
   * Supports custom webroot
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 21 Jan 2016 15:28:13 +0100
 
-openmediavault-letsencrypt (2.1) testing; urgency=low
+openmediavault-acme (2.1) testing; urgency=low
 
   * Supports multiple (sub)domains
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 18 Jan 2016 15:28:13 +0100
 
-openmediavault-letsencrypt (2.0) testing; urgency=low
+openmediavault-acme (2.0) testing; urgency=low
 
   * Initial release
 

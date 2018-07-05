@@ -1,6 +1,6 @@
 [{
 	"type": "rpc",
-	"id": "rpc.letsencrypt.setsettings",
+	"id": "rpc.acme.setsettings",
 	"params": {
 		"type": "object",
 		"properties": {
@@ -13,12 +13,8 @@
 				"required": true
 			},
 			"email": {
-			    "type": "string",
+				"type": "string",
 				"format": "email",
-				"required": true
-			},
-			"name": {
-			    "type": "string",
 				"required": true
 			},
 			"keylength": {
@@ -27,19 +23,23 @@
 				"maximum": 4096,
 				"required": true
 			},
+			"env": {
+				"type": "string",
+				"required": false
+			},
 			"extraoptions": {
-			    "type": "string",
+				"type": "string",
 				"required": false
 			},
 			"certuuid": {
-			    "type": "string",
+				"type": "string",
 				"required": true
 			}
 		}
 	}
 },{
 	"type": "rpc",
-	"id": "rpc.letsencrypt.setdomain",
+	"id": "rpc.acme.setdomain",
 	"params": {
 		"type": "object",
 		"properties": {
@@ -49,11 +49,37 @@
 				"required": true
 			},
 			"domain": {
-			    "type": "string",
+				"type": "string",
+				"required": true
+			},
+			"validation": {
+				"type": "string",
+				"enum": ["webroot", "dns_cf", "dns_he"],
 				"required": true
 			},
 			"webroot": {
-			    "type": "string",
+				"type": "string",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.acme.setenv",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"key": {
+				"type": "string",
+				"required": true
+			},
+			"value": {
+				"type": "string",
 				"required": true
 			}
 		}

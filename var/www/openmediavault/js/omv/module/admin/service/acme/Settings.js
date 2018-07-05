@@ -19,21 +19,21 @@
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/Rpc.js")
 
-Ext.define('OMV.module.admin.service.letsencrypt.Settings', {
+Ext.define('OMV.module.admin.service.acme.Settings', {
     extend: 'OMV.workspace.form.Panel',
 
     requires: [
         'OMV.Rpc',
     ],
 
-    rpcService: 'LetsEncrypt',
+    rpcService: 'ACME',
     rpcGetMethod: 'getSettings',
     rpcSetMethod: 'setSettings',
 
     getFormItems: function() {
         return [{
             xtype: 'fieldset',
-            title: _('LetsEncrypt settings'),
+            title: _('ACME settings'),
             defaults: {
                 labelSeparator: ''
             },
@@ -60,11 +60,6 @@ Ext.define('OMV.module.admin.service.letsencrypt.Settings', {
                     ptype: 'fieldinfo',
                     text: _('Required for registration with LetsEncrypt.org.  This email address can be used to recover lost certificates.')
                 }]
-            },{
-                xtype: 'textfield',
-                name: 'name',
-                fieldLabel: _('Certificate Name'),
-                allowBlank: false
             },{
                 xtype: 'combo',
                 name: 'keylength',
@@ -117,8 +112,8 @@ Ext.define('OMV.module.admin.service.letsencrypt.Settings', {
 
 OMV.WorkspaceManager.registerPanel({
     id: 'settings',
-    path: '/service/letsencrypt',
+    path: '/service/acme',
     text: _('Settings'),
-    position: 20,
-    className: 'OMV.module.admin.service.letsencrypt.Settings'
+    position: 30,
+    className: 'OMV.module.admin.service.acme.Settings'
 });

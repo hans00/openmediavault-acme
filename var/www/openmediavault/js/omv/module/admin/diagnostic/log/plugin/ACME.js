@@ -21,11 +21,11 @@
 
 // require("js/omv/module/admin/diagnostic/log/plugin/Plugin.js")
 
-Ext.define("OMV.module.admin.diagnostic.log.plugin.LetsEncrypt", {
+Ext.define("OMV.module.admin.diagnostic.log.plugin.ACME", {
     extend: "OMV.module.admin.diagnostic.log.plugin.Plugin",
-    alias: "omv.plugin.diagnostic.log.letsencrypt",
+    alias: "omv.plugin.diagnostic.log.ACME",
 
-    id: "letsencrypt",
+    id: "ACME",
     text: _("Let's Encrypt"),
     stateful: true,
     stateId: "7b83dc6c-d00f-11e5-83d8-c7d2b832bc6e",
@@ -57,7 +57,7 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.LetsEncrypt", {
         flex: 1
     }],
     rpcParams: {
-        id: "letsencrypt"
+        id: "acme"
     },
     rpcFields: [
         { name: "rownum", type: "int" },

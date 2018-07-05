@@ -27,18 +27,33 @@
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 
-Ext.define('OMV.module.admin.service.letsencrypt.Domain', {
+Ext.define('OMV.module.admin.service.acme.Domain', {
     extend: 'OMV.workspace.window.Form',
     uses: [
-        'OMV.workspace.window.plugin.ConfigObject'
+        'OMV.workspace.window.plugin.ConfigObject',
+        'OMV.form.plugin.LinkedFields'
     ],
 
-    rpcService: 'LetsEncrypt',
+    rpcService: 'ACME',
     rpcGetMethod: 'getDomain',
     rpcSetMethod: 'setDomain',
 
     plugins: [{
         ptype: 'configobject'
+    },{
+        ptype: 'linkedfields',
+        correlations: [{
+            name: ['webroot'],
+            conditions: [{
+                name: 'validation',
+                value: 'webroot'
+            }],
+            properties: [
+                'show',
+                '!allowBlank',
+                '!readOnly'
+            ]
+        }]
     }],
 
     width: 600,
@@ -55,10 +70,34 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domain', {
                 text: _('Domains the certificate will be generated for and must point to this server, e.g yourdomain.tld, sub.afraid.org.  Wildcard (*) domains are not supported.  Separate multiple (sub)domains with a comma (,)')
             }]
         },{
+            xtype: 'combo',
+            name: 'validation',
+            fieldLabel: _('Validation Type'),
+            allowBlank: false,
+            store: new Ext.data.SimpleStore({
+                fields: [ 'value', 'text' ],
+                data: [
+                    [ 'webroot', _('Web root') ],
+                    [ 'dns_cf', _('DNS CloudFlare') ],
+                    [ 'dns_he', _('DNS Hurricane Electric') ]
+                ]
+            }),
+            displayField: 'text',
+            valueField: 'value',
+            editable: false,
+            triggerAction: 'all',
+            value: 'webroot',
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('The validation type of your internet facing.')
+            }]
+        },{
             xtype: 'textfield',
             name: 'webroot',
             fieldLabel: _('Web root'),
-            allowBlank: false,
+            allowBlank: true,
+            readOnly: true,
+            hidden: true,
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('The root directory of the files served by your internet facing webserver.')
@@ -67,7 +106,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domain', {
     }
 });
 
-Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
+Ext.define('OMV.module.admin.service.acme.Domains', {
     extend: 'OMV.workspace.grid.Panel',
     requires: [
         'OMV.Rpc',
@@ -76,7 +115,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
         'OMV.data.proxy.Rpc'
     ],
     uses: [
-        'OMV.module.admin.service.letsencrypt.Domain'
+        'OMV.module.admin.service.acme.Domain'
     ],
 
     hidePagingToolbar: false,
@@ -84,17 +123,29 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
     stateId: 'b70948e4-bb59-11e7-afda-bb34f6129164',
     columns: [{
         xtype: 'textcolumn',
-        text: _('Web root'),
-        sortable: true,
-        dataIndex: 'webroot',
-        stateId: 'webroot',
-        flex: 1
-    },{
-        xtype: 'textcolumn',
         text: _('Domain(s)'),
         sortable: true,
         dataIndex: 'domain',
         stateId: 'domain',
+        flex: 1
+    },{
+        xtype: 'mapcolumn',
+        text: _('Validation Type'),
+        sortable: true,
+        dataIndex: 'validation',
+        stateId: 'validation',
+        flex: 1,
+        mapItems: {
+            'webroot': _('Web root'),
+            'dns_cf': _('DNS CloudFlare'),
+            'dns_he': _('DNS Hurricane Electric')
+        }
+    },{
+        xtype: 'textcolumn',
+        text: _('Web root'),
+        sortable: true,
+        dataIndex: 'webroot',
+        stateId: 'webroot',
         flex: 1
     }],
 
@@ -107,6 +158,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
                     idProperty: 'uuid',
                     fields: [
                         { name: 'uuid', type: 'string' },
+                        { name: 'validation', type: 'string' },
                         { name: 'webroot', type: 'string' },
                         { name: 'domain', type: 'string' }
                     ]
@@ -114,7 +166,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
                 proxy: {
                     type: 'rpc',
                     rpcData: {
-                        service: 'LetsEncrypt',
+                        service: 'ACME',
                         method: 'getDomainList'
                     }
                 }
@@ -147,7 +199,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
 
     onAddButton: function () {
         var me = this;
-        Ext.create('OMV.module.admin.service.letsencrypt.Domain', {
+        Ext.create('OMV.module.admin.service.acme.Domain', {
             title: _('Add domain'),
             uuid: OMV.UUID_UNDEFINED,
             listeners: {
@@ -162,7 +214,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
     onEditButton: function () {
         var me = this;
         var record = me.getSelected();
-        Ext.create('OMV.module.admin.service.letsencrypt.Domain', {
+        Ext.create('OMV.module.admin.service.acme.Domain', {
             title: _('Edit domain'),
             uuid: record.get('uuid'),
             listeners: {
@@ -180,7 +232,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
             scope: me,
             callback: me.onDeletion,
             rpcData: {
-                service: 'LetsEncrypt',
+                service: 'ACME',
                 method: 'deleteDomain',
                 params: {
                     uuid: record.get('uuid')
@@ -193,7 +245,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
         var me = this;
         var wnd = Ext.create('OMV.window.Execute', {
             title: _('Generate'),
-            rpcService: 'LetsEncrypt',
+            rpcService: 'ACME',
             rpcMethod: 'generateCertificate',
             rpcIgnoreErrors: true,
             hideStartButton: true,
@@ -218,7 +270,7 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
         var me = this;
         var wnd = Ext.create('OMV.window.Execute', {
             title: _('Renew'),
-            rpcService: 'LetsEncrypt',
+            rpcService: 'ACME',
             rpcMethod: 'generateCertificate',
             rpcParams: {
                 'command': 'renew'
@@ -244,9 +296,9 @@ Ext.define('OMV.module.admin.service.letsencrypt.Domains', {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id: 'shares',
-    path: '/service/letsencrypt',
+    id: 'domains',
+    path: '/service/acme',
     text: _('Domains'),
     position: 10,
-    className: 'OMV.module.admin.service.letsencrypt.Domains'
+    className: 'OMV.module.admin.service.acme.Domains'
 });

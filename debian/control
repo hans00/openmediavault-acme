@@ -1,4 +1,4 @@
-Source: openmediavault-letsencrypt
+Source: openmediavault-acme
 Section: net
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
@@ -6,10 +6,9 @@ Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.6
 XB-Plugin-Section: utilities
 
-Package: openmediavault-letsencrypt
+Package: openmediavault-acme
 Architecture: all
 Depends: openmediavault (>= 3.0.26),
-         certbot,
          ${misc:Depends}
 Description: Generate free and valid SSL certificates for OMV
  Let's Encrypt allows you to to automatically generate free SSL certificates that you can use to secure server.

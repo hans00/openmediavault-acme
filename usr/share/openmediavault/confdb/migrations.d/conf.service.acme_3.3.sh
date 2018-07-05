@@ -23,23 +23,15 @@ set -e
 
 . /usr/share/openmediavault/scripts/helper-functions
 
-SERVICE_XPATH_NAME="letsencrypt"
+SERVICE_XPATH_NAME="acme"
 SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-if ! omv_config_exists "${SERVICE_XPATH}/domains"; then
-    omv_config_add_node "${SERVICE_XPATH}" "domains"
+if ! omv_config_exists "${SERVICE_XPATH}/keylength"; then
+    omv_config_add_key "${SERVICE_XPATH}" "keylength" "2048"
 fi
 
-if ! omv_config_exists "${SERVICE_XPATH}/name"; then
-    omv_config_add_key "${SERVICE_XPATH}" "name"
-fi
-
-if omv_config_exists "${SERVICE_XPATH}/domain"; then
-    omv_config_delete "${SERVICE_XPATH}/domain"
-fi
-
-if omv_config_exists "${SERVICE_XPATH}/webroot"; then
-    omv_config_delete "${SERVICE_XPATH}/webroot"
+if omv_config_exists "${SERVICE_XPATH}/cron_uuid"; then
+    omv_config_delete "${SERVICE_XPATH}/cron_uuid"
 fi
 
 exit 0

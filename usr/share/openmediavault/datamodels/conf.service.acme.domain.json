@@ -1,9 +1,9 @@
 {
 	"type": "config",
-	"id": "conf.service.letsencrypt.domain",
-	"title": "Let's Encrypt domain",
+	"id": "conf.service.acme.domain",
+	"title": "ACME domain",
 	"queryinfo": {
-		"xpath": "//services/letsencrypt/domains/domain",
+		"xpath": "//services/acme/domains/domain",
 		"iterable": true,
 		"idproperty": "uuid"
 	},
@@ -13,6 +13,10 @@
 			"format": "uuidv4"
 		},
 		"domain": {
+			"type": "string",
+			"default": ""
+		},
+		"validation": {
 			"type": "string",
 			"default": ""
 		},

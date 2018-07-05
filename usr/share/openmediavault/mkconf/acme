@@ -20,11 +20,11 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-LETSENCRYPT_CRON="/etc/cron.d/openmediavault-letsencrypt"
-XPATH="//services/letsencrypt"
+ACME_CRON="/etc/cron.d/openmediavault-acme"
+XPATH="//services/acme"
 
-if [ -f "${LETSENCRYPT_CRON}" ]; then
-    rm -f "${LETSENCRYPT_CRON}"
+if [ -f "${ACME_CRON}" ]; then
+    rm -f "${ACME_CRON}"
 fi
 
 # Generate configuration only if the service is enabled.
@@ -33,10 +33,10 @@ if [ "$(omv_config_get "${XPATH}/enable")" != "1" ]; then
 fi
 
 # Generate cron file
-cat <<EOF > ${LETSENCRYPT_CRON}
+cat <<EOF > ${ACME_CRON}
 # this file was automatically generated
-@monthly root omv-rpc "LetsEncrypt" "generateCertificate" "{\"command\":\"renew\"}" >/dev/null 2>&1
+@monthly root omv-rpc "ACME" "generateCertificate" "{\"command\":\"renew\"}" >/dev/null 2>&1
 EOF
-chmod 644 ${LETSENCRYPT_CRON}
+chmod 644 ${ACME_CRON}
 
 exit 0
