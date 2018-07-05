@@ -185,7 +185,19 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
         $db = \OMV\Config\Database::getInstance();
         if (TRUE === $isNew) {
             // Check uniqueness - web root
-            $db->assertIsUnique($object, 'webroot');
+            $db->assertIsUniqueByFilter($object, [
+                'operator' => 'and',
+                'arg0' => [
+                    'operator' => 'stringEquals',
+                    'arg0' => 'validation',
+                    'arg1' => $object->get('validation')
+                ],
+                'arg1' => [
+                    'operator' => 'stringEquals',
+                    'arg0' => 'webroot',
+                    'arg1' => $object->get('webroot')
+                ]
+            ]);
         }
         $db->set($object);
         // Return the configuration object.
