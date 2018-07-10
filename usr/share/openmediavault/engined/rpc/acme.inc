@@ -257,12 +257,15 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                     if ($object->get('test_cert')) {
                         $cmdArgs[] = '--test';
                     }
+                    if ($certExists) {
+                        $cmdArgs[] = '--force';
+                    }
                     foreach ($domains as $domaink => &$domainv) {
                         // convert domain list to array
                         $domains2 = explode(',', $domainv->get('domain'));
                         // generate domain parameters
                         foreach ($domains2 as $domain) {
-                            $cmdArgs[] = sprintf('-d %s', trim($domain));
+                            $cmdArgs[] = sprintf('-d %s', escapeshellarg(trim($domain)));
                         }
                         if ($domainv->get('validation') == 'webroot') {
                             $cmdArgs[] = sprintf('--webroot %s',
@@ -296,7 +299,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                 $this->writeBgProcOutput($bgOutputFilename, PHP_EOL.PHP_EOL);
                 $this->exec($cmdLine, $output, $bgOutputFilename);
                 // Without update cert in testing mode
-                if ($object->get('test_cert')) {
+                if (!$object->get('test_cert')) {
                     // Replace cert if not testing
                     $liveDir = '/root/.acme.sh';
                     $keyFile = sprintf('%s/%s/%s.key', $liveDir, $certName, $certName);

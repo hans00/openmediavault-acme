@@ -26,7 +26,7 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.ACME", {
     alias: "omv.plugin.diagnostic.log.ACME",
 
     id: "ACME",
-    text: _("Let's Encrypt"),
+    text: _("ACME"),
     stateful: true,
     stateId: "7b83dc6c-d00f-11e5-83d8-c7d2b832bc6e",
     columns: [{
@@ -37,18 +37,6 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.ACME", {
         renderer: function(value, metaData, record) {
             return record.get("date");
         }
-    },{
-        text: _("Level"),
-        sortable: true,
-        dataIndex: "level",
-        stateId: "level",
-        flex: 1
-    },{
-        text: _("Component"),
-        sortable: true,
-        dataIndex: "component",
-        stateId: "component",
-        flex: 1
     },{
         text: _("Message"),
         sortable: true,
@@ -63,8 +51,6 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.ACME", {
         { name: "rownum", type: "int" },
         { name: "ts", type: "int" },
         { name: "date", type: "string" },
-        { name: "component", type: "string" },
-        { name: "level", type: "string" },
         { name: "message", type: "string" }
     ]
 });
