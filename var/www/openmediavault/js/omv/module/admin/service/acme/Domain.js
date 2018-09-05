@@ -78,8 +78,9 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
                 fields: [ 'value', 'text' ],
                 data: [
                     [ 'webroot', _('Web root') ],
-                    [ 'dns_cf', _('DNS CloudFlare') ],
-                    [ 'dns_he', _('DNS Hurricane Electric') ]
+                    [ 'dns_cf', _('CloudFlare DNS') ],
+                    [ 'dns_he', _('Hurricane Electric DNS') ],
+                    [ 'dns_gandi_livedns', _('Gandi LiveDNS') ]
                 ]
             }),
             displayField: 'text',
@@ -137,8 +138,9 @@ Ext.define('OMV.module.admin.service.acme.Domains', {
         flex: 1,
         mapItems: {
             'webroot': _('Web root'),
-            'dns_cf': _('DNS CloudFlare'),
-            'dns_he': _('DNS Hurricane Electric')
+            'dns_cf': _('CloudFlare DNS'),
+            'dns_he': _('Hurricane Electric DNS'),
+            'dns_gandi_livedns': _('Gandi LiveDNS')
         }
     },{
         xtype: 'textcolumn',

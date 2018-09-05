@@ -128,8 +128,11 @@ msgstr ""
 msgid "Validation Type"
 msgstr ""
 
-msgid "DNS CloudFlare"
+msgid "CloudFlare DNS"
 msgstr ""
 
-msgid "DNS Hurricane Electric"
+msgid "Hurricane Electric DNS"
+msgstr ""
+
+msgid "Gandi LiveDNS"
 msgstr ""
