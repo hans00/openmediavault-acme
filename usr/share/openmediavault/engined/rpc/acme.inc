@@ -264,9 +264,6 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                         // convert domain list to array
                         $domains2 = explode(',', $domainv->get('domain'));
                         // generate domain parameters
-                        foreach ($domains2 as $domain) {
-                            $cmdArgs[] = sprintf('-d %s', escapeshellarg(trim($domain)));
-                        }
                         if ($domainv->get('validation') == 'webroot') {
                             $cmdArgs[] = sprintf('--webroot %s',
                                 $domainv->get('webroot')
@@ -275,6 +272,9 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                             $cmdArgs[] = sprintf('--dns %s',
                                 $domainv->get('validation')
                             );
+                        }
+                        foreach ($domains2 as $domain) {
+                            $cmdArgs[] = sprintf('-d %s', escapeshellarg(trim($domain)));
                         }
                     }
                     if (!empty($object->get('extraoptions'))) {
