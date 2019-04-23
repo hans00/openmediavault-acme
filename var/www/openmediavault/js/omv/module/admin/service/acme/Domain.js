@@ -80,6 +80,9 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
                     [ 'webroot', _('Web root') ],
                     [ 'dns_cf', _('CloudFlare DNS') ],
                     [ 'dns_he', _('Hurricane Electric DNS') ],
+                    [ 'dns_duckdns', _('Duckdns DNS') ],
+                    [ 'dns_ddnss', _('DDNSS DNS') ],
+                    [ 'dns_desec', _('Desec DNS') ],
                     [ 'dns_gandi_livedns', _('Gandi LiveDNS') ]
                 ]
             }),
@@ -140,6 +143,9 @@ Ext.define('OMV.module.admin.service.acme.Domains', {
             'webroot': _('Web root'),
             'dns_cf': _('CloudFlare DNS'),
             'dns_he': _('Hurricane Electric DNS'),
+            'dns_duckdns': _('Duckdns DNS'),
+            'dns_ddnss': _('DDNSS DNS'),
+            'dns_desec': _('Desec DNS'),
             'dns_gandi_livedns': _('Gandi LiveDNS')
         }
     },{
