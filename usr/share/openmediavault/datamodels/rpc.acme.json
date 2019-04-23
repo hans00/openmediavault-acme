@@ -54,7 +54,7 @@
 			},
 			"validation": {
 				"type": "string",
-				"enum": ["webroot", "dns_cf", "dns_he", "dns_gandi_livedns"],
+				"enum": ["webroot", "dns_cf", "dns_he", "dns_duckdns", "dns_ddnss", "dns_desec", "dns_gandi_livedns"],
 				"required": true
 			},
 			"webroot": {
