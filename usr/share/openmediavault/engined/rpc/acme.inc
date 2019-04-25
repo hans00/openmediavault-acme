@@ -281,9 +281,9 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                         $cmdArgs[] = escapeshellarg($object->get('extraoptions'));
                     }
                 }
-                $cmdArgs[] = '--log /root/.acme.sh/acme.sh.log';
-                $cmdArgs[] = '--home /root/.acme.sh';
-                $cmd = new \OMV\System\Process('/root/.acme.sh/acme.sh', $cmdArgs);
+                $cmdArgs[] = '--log /opt/acme/acme.sh.log';
+                $cmdArgs[] = '--home /opt/acme';
+                $cmd = new \OMV\System\Process('/opt/acme/acme.sh', $cmdArgs);
                 $cmd->setRedirect2to1(true);
                 // Enviroments
                 $cmd->setEnv('ACCOUNT_EMAIL', $object->get('email'));
@@ -301,7 +301,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                 // Without update cert in testing mode
                 if (!$object->get('test_cert')) {
                     // Replace cert if not testing
-                    $liveDir = '/root/.acme.sh';
+                    $liveDir = '/opt/acme';
                     $keyFile = sprintf('%s/%s/%s.key', $liveDir, $certName, $certName);
                     $crtFile = sprintf('%s/%s/fullchain.cer', $liveDir, $certName);
                     if (file_exists($keyFile) && file_exists($crtFile)) {
