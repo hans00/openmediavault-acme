@@ -1,6 +1,6 @@
 openmediavault-acme (3.4.6) stable; urgency=low
 
-  * Add DNS Providers Duckdns, DDNSS and DeSec
+  * Add DNS Providers Duckdns, DDNSS and DeSec and change install path's to /opt/acme
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
 
