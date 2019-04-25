@@ -67,7 +67,7 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
             allowBlank: false,
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('Domains the certificate will be generated for and must point to this server, e.g yourdomain.tld, sub.afraid.org.  Wildcard (*) domains are not supported.  Separate multiple (sub)domains with a comma (,)')
+                text: _('Domains the certificate will be generated for and must point to this server, e.g yourdomain.tld, sub.afraid.org.  Wildcard (*) domains are supported if using DNS-Validation.  Separate multiple (sub)domains with a comma (,)')
             }]
         },{
             xtype: 'combo',
