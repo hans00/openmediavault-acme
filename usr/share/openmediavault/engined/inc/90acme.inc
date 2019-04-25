@@ -7,7 +7,7 @@ require_once("openmediavault/functions.inc");
 // 2016-01-17 19:34:29,266:DEBUG:acme.cli:Picked account: <Account(eb49da97b040939e9439a6a1c123294c)>
 \OMV\System\LogFileSpec::registerSpecification("acme", [
     "filename" => "acme",
-    "filepath" => "/root/.acme.sh/acme.sh.log",
+    "filepath" => "/opt/acme/acme.sh.log",
     "regex"    => "/^\[([^\[\]]+)\] ([[:print:]]+)$/",
     "columns"  => [
         "ts" => [
