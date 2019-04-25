@@ -1,8 +1,12 @@
-openmediavault-letsencrypt
+openmediavault-acme
 ==========================
 
 Using the power of Let's Encrypt, generate valid SSL certificates for your OpenMediaVault.
 Your SSL certificate will be recognized by the majority of browsers.
+
+This fork of the famous letsencrpyt-plugin uses the wonderful acme.sh implementation instead of certbot. This way, you can use the DNS-APIs provided for the ACME-Challenge and create wildcard certificates for instance.
+
+More Information: [ACME Homepage](https://acme.sh/)
 
 The key principles behind Let’s Encrypt are:
 
