@@ -12,6 +12,7 @@ case "$1" in
         omv_config_delete "/config/services/acme"
 
         if [ -d "/opt/acme" ]; then
+            /opt/acme/acme.sh --uninstall
             rm -rf "/opt/acme"
         fi
 
