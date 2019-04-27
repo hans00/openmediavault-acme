@@ -276,11 +276,11 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                             );
                         }
                         foreach ($domains2 as $domain) {
-                            $cmdArgs[] = sprintf('-d %s', escapeshellarg(trim($domain)));
+                            $cmdArgs[] = sprintf('-d %s', trim($domain));
                         }
                     }
                     if (!empty($object->get('extraoptions'))) {
-                        $cmdArgs[] = escapeshellarg($object->get('extraoptions'));
+                        $cmdArgs[] = $object->get('extraoptions');
                     }
                 }
                 $cmdArgs[] = '--log /opt/acme/acme.sh.log';
