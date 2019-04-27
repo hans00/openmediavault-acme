@@ -53,6 +53,17 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
                 '!allowBlank',
                 '!readOnly'
             ]
+        },{
+            name: ['dnsapi'],
+            conditions: [{
+                name: 'validation',
+                value: 'dnsapi'
+            }],
+            properties: [
+                'show',
+                '!allowBlank',
+                '!readOnly'
+            ]
         }]
     }],
 
