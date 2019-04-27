@@ -196,6 +196,11 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                     'operator' => 'stringEquals',
                     'arg0' => 'webroot',
                     'arg1' => $object->get('webroot')
+                ],
+                'arg2' => [
+                    'operator' => 'stringEquals',
+                    'arg0' => 'dnsapi',
+                    'arg1' => $object->get('dnsapi')
                 ]
             ]);
         }
