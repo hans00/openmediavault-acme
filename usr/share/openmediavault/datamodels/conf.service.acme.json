@@ -73,6 +73,10 @@
 								"description": "The validation type of your internet facing",
 								"type": "string"
 							},
+							"dnsapi": {
+								"description": "The DNS-API to user",
+								"type": "string"
+							},					
 							"webroot": {
 								"description": "The root directory of the files served by your internet facing webserver",
 								"type": "string",
