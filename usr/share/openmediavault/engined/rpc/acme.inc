@@ -201,7 +201,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
             ]);
           }       
         }
-        db->set($object);
+        $db->set($object);
         // Return the configuration object.
         return $object->getAssoc();
     }
