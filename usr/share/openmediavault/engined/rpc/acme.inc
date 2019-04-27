@@ -270,7 +270,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                             );
                         } else {
                             $cmdArgs[] = sprintf('--dns %s',
-                                $domainv->get('validation')
+                                $domainv->get('dnsapi')
                             );
                         }
                         foreach ($domains2 as $domain) {
