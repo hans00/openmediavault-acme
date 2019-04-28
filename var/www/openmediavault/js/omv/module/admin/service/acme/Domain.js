@@ -121,7 +121,7 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
             hidden: true,
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('Provide the Name of the DNS-API to use for acme.sh (for example dns_cf). See the full list in the acme.sh wiki.')
+                text: _('Provide the Name of the DNS-API to use for acme.sh (for example dns_cf). All supported APIs can be found in the acme.sh Wiki')
             }]
         }];
     }
