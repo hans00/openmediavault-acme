@@ -1,3 +1,9 @@
+openmediavault-acme (3.4.8) stable; urgency=low
+
+  * Cleaning up the interface
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
+
 openmediavault-acme (3.4.7) stable; urgency=low
 
   * Make DNS-API completly flexible by allowing individual settings
