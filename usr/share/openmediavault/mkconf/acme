@@ -35,7 +35,9 @@ fi
 # Generate cron file
 cat <<EOF > ${ACME_CRON}
 # this file was automatically generated
-@monthly root omv-rpc "ACME" "generateCertificate" "{\"command\":\"renew\"}" >/dev/null 2>&1
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+@weekly root omv-rpc "ACME" "generateCertificate" "{\"command\":\"renew\"}" >/dev/null 2>&1
 EOF
 chmod 644 ${ACME_CRON}
 
