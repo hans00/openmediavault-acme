@@ -23,6 +23,10 @@
 		"webroot": {
 			"type": "string",
 			"default": ""
+		},
+		"dnsapi": {
+			"type": "string",
+			"default": ""
 		}
 	}
 }

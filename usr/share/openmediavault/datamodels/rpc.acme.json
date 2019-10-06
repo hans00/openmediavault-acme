@@ -54,10 +54,14 @@
 			},
 			"validation": {
 				"type": "string",
-				"enum": ["webroot", "dns_cf", "dns_he", "dns_gandi_livedns"],
+				"enum": ["webroot", "dnsapi"],
 				"required": true
 			},
 			"webroot": {
+				"type": "string",
+				"required": true
+			},
+			"dnsapi": {
 				"type": "string",
 				"required": true
 			}

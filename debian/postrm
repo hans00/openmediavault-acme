@@ -11,8 +11,9 @@ case "$1" in
     purge)
         omv_config_delete "/config/services/acme"
 
-        if [ -d "/root/.acme.sh" ]; then
-            rm -rf "/root/.acme.sh"
+        if [ -d "/opt/acme" ]; then
+            /opt/acme/acme.sh --uninstall
+            rm -rf "/opt/acme"
         fi
 
         if [ -f "${LETSENCRYPT_CRON}" ]; then

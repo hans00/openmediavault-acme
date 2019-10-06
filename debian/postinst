@@ -19,7 +19,12 @@ case "$1" in
             omv-confdbadm migrate "conf.service.acme" "${2}"
         fi
         echo "Install acme.sh"
-        curl "https://get.acme.sh" | sh
+        cd /tmp
+        git clone https://github.com/Neilpang/acme.sh.git
+        cd acme.sh
+        ./acme.sh --install --home /opt/acme --config-home /opt/acme
+        cd ..
+        rm -rf acme.sh
         crontab -l | awk '!/acme\.sh/' | crontab -
     ;;
 

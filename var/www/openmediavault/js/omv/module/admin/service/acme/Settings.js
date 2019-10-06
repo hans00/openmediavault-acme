@@ -100,10 +100,10 @@ Ext.define('OMV.module.admin.service.acme.Settings', {
             items: [{
                 border: false,
                 html: '<ul>' +
-                    '<li>Plugin uses the <a href="https://letsencrypt.readthedocs.org/en/latest/using.html#webroot">webroot installation</a> method provided by Let\'s Encrypt.</li>' +
+                    '<li>Plugin uses either the <b>webroot installation</b> or the <b>DNS-API</b> method provided by the <a href="https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert">acme.sh client</a> for Let\'s Encrypt.</li>' +
                     '<li>OMV configuration needs to be applied after generating certificate due to the plugin adding entries to certificates.</li>' +
-                    '<li>If you generate your first certificate with the test flag enabled your certificate will have an invalid root cert from Happy Hacker.  You will need to delete your /etc/letsencrypt folder and start over.</li>' +
-                    '<li>Port <b>80</b> must be open for Let\'s Encrypt to verify your domain.</li>' +
+                    '<li>If you generate your first certificate with the test flag enabled your certificate will have an invalid root cert from Happy Hacker.  You will need to delete your certificates in the /opt/acme folder and start over.</li>' +
+                    '<li>Port <b>80</b> must be open for Let\'s Encrypt to verify your domain in webroot mode</li>' +
                     '</ul>'
             }]
         }];

@@ -71,7 +71,7 @@ Ext.define('OMV.module.admin.service.acme.Env', {
             items: [{
                 border: false,
                 html: _('DNS API validation enviroment, see: ' +
-                '<a target="_blank" href="https://github.com/Neilpang/acme.sh/tree/master/dnsapi">https://github.com/Neilpang/acme.sh/tree/master/dnsapi</a>' +
+                '<a target="_blank" href="https://github.com/Neilpang/acme.sh/wiki/dnsapi">https://github.com/Neilpang/acme.sh/wiki/dnsapi</a>' +
                 '<br>e.g.<br><code>CF_Key => sdfsdfsdfljlbjkljlkjsdfoiwje</code>')
             }]
         }];

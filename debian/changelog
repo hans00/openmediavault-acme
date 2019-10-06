@@ -1,3 +1,27 @@
+openmediavault-acme (3.4.9) stable; urgency=low
+
+  * Fix Cronjob
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
+ 
+openmediavault-acme (3.4.8) stable; urgency=low
+
+  * Cleaning up the interface
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
+
+openmediavault-acme (3.4.7) stable; urgency=low
+
+  * Make DNS-API completly flexible by allowing individual settings
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
+
+openmediavault-acme (3.4.6) stable; urgency=low
+
+  * Add DNS Providers Duckdns, DDNSS and DeSec and change install path's to /opt/acme
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Dec 2017 15:29:57 -0600
+
 openmediavault-acme (3.4.5) stable; urgency=low
 
   * Add date to cert description field

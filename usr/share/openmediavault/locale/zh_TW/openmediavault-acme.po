@@ -146,5 +146,14 @@ msgstr ""
 msgid "Hurricane Electric DNS"
 msgstr ""
 
+msgid "Duckdns DNS"
+msgstr ""
+
+msgid "DDNSS DNS"
+msgstr ""
+
+msgid "Desec DNS"
+msgstr ""
+
 msgid "Gandi LiveDNS"
 msgstr ""

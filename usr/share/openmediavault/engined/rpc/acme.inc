@@ -184,6 +184,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
         $isNew = $object->isNew();
         $db = \OMV\Config\Database::getInstance();
         if (TRUE === $isNew) {
+          if ($object->get('validation') == 'webroot') {  
             // Check uniqueness - web root
             $db->assertIsUniqueByFilter($object, [
                 'operator' => 'and',
@@ -198,6 +199,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                     'arg1' => $object->get('webroot')
                 ]
             ]);
+          }
         }
         $db->set($object);
         // Return the configuration object.
@@ -270,20 +272,20 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                             );
                         } else {
                             $cmdArgs[] = sprintf('--dns %s',
-                                $domainv->get('validation')
+                                $domainv->get('dnsapi')
                             );
                         }
                         foreach ($domains2 as $domain) {
-                            $cmdArgs[] = sprintf('-d %s', escapeshellarg(trim($domain)));
+                            $cmdArgs[] = sprintf('-d %s', trim($domain));
                         }
                     }
                     if (!empty($object->get('extraoptions'))) {
-                        $cmdArgs[] = escapeshellarg($object->get('extraoptions'));
+                        $cmdArgs[] = $object->get('extraoptions');
                     }
                 }
-                $cmdArgs[] = '--log /root/.acme.sh/acme.sh.log';
-                $cmdArgs[] = '--home /root/.acme.sh';
-                $cmd = new \OMV\System\Process('/root/.acme.sh/acme.sh', $cmdArgs);
+                $cmdArgs[] = '--log /opt/acme/acme.sh.log';
+                $cmdArgs[] = '--home /opt/acme';
+                $cmd = new \OMV\System\Process('/opt/acme/acme.sh', $cmdArgs);
                 $cmd->setRedirect2to1(true);
                 // Enviroments
                 $cmd->setEnv('ACCOUNT_EMAIL', $object->get('email'));
@@ -301,7 +303,7 @@ class OMVRpcServiceACME extends \OMV\Rpc\ServiceAbstract
                 // Without update cert in testing mode
                 if (!$object->get('test_cert')) {
                     // Replace cert if not testing
-                    $liveDir = '/root/.acme.sh';
+                    $liveDir = '/opt/acme';
                     $keyFile = sprintf('%s/%s/%s.key', $liveDir, $certName, $certName);
                     $crtFile = sprintf('%s/%s/fullchain.cer', $liveDir, $certName);
                     if (file_exists($keyFile) && file_exists($crtFile)) {

@@ -53,6 +53,17 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
                 '!allowBlank',
                 '!readOnly'
             ]
+        },{
+            name: ['dnsapi'],
+            conditions: [{
+                name: 'validation',
+                value: 'dnsapi'
+            }],
+            properties: [
+                'show',
+                '!allowBlank',
+                '!readOnly'
+            ]
         }]
     }],
 
@@ -67,7 +78,7 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
             allowBlank: false,
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('Domains the certificate will be generated for and must point to this server, e.g yourdomain.tld, sub.afraid.org.  Wildcard (*) domains are not supported.  Separate multiple (sub)domains with a comma (,)')
+                text: _('Domains the certificate will be generated for and must point to this server if using webroot-method. Wildcard (*) domains are supported if using DNS-API. Separate multiple (sub)domains with a comma (,)')
             }]
         },{
             xtype: 'combo',
@@ -78,9 +89,7 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
                 fields: [ 'value', 'text' ],
                 data: [
                     [ 'webroot', _('Web root') ],
-                    [ 'dns_cf', _('CloudFlare DNS') ],
-                    [ 'dns_he', _('Hurricane Electric DNS') ],
-                    [ 'dns_gandi_livedns', _('Gandi LiveDNS') ]
+                    [ 'dnsapi', _('DNS API') ]
                 ]
             }),
             displayField: 'text',
@@ -90,7 +99,7 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
             value: 'webroot',
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('The validation type of your internet facing.')
+                text: _('Choose your validation type.')
             }]
         },{
             xtype: 'textfield',
@@ -102,6 +111,17 @@ Ext.define('OMV.module.admin.service.acme.Domain', {
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('The root directory of the files served by your internet facing webserver.')
+            }]
+        },{
+            xtype: 'textfield',
+            name: 'dnsapi',
+            fieldLabel: _('DNS API'),
+            allowBlank: true,
+            readOnly: true,
+            hidden: true,
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('Provide the Name of the DNS-API to use for acme.sh (for example dns_cf). All supported APIs can be found in the acme.sh Wiki')
             }]
         }];
     }
@@ -138,9 +158,7 @@ Ext.define('OMV.module.admin.service.acme.Domains', {
         flex: 1,
         mapItems: {
             'webroot': _('Web root'),
-            'dns_cf': _('CloudFlare DNS'),
-            'dns_he': _('Hurricane Electric DNS'),
-            'dns_gandi_livedns': _('Gandi LiveDNS')
+            'dnsapi': _('DNS API')  
         }
     },{
         xtype: 'textcolumn',
@@ -148,6 +166,13 @@ Ext.define('OMV.module.admin.service.acme.Domains', {
         sortable: true,
         dataIndex: 'webroot',
         stateId: 'webroot',
+        flex: 1
+    },{
+        xtype: 'textcolumn',
+        text: _('DNS API'),
+        sortable: true,
+        dataIndex: 'dnsapi',
+        stateId: 'dnsapi',
         flex: 1
     }],
 
@@ -162,6 +187,7 @@ Ext.define('OMV.module.admin.service.acme.Domains', {
                         { name: 'uuid', type: 'string' },
                         { name: 'validation', type: 'string' },
                         { name: 'webroot', type: 'string' },
+                        { name: 'dnsapi', type: 'string' },
                         { name: 'domain', type: 'string' }
                     ]
                 }),
